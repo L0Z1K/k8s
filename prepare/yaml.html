@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ko-KR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>YAML 문법 | 쿠버네티스 안내서</title>
+    <meta name="generator" content="VuePress 1.7.1">
+    <link rel="icon" type="image/png" sizes="32x32" href="/k8s/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/k8s/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/k8s/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/k8s/manifest.json">
+    <link rel="mask-icon" href="/k8s/icons/safari-pinned-tab.svg" color="#5bbad5">
+    <link href="https://css.gg/css?=|calendar-dates|folder|tag" rel="stylesheet">
+    <meta name="description" content="YAML 문법에 대해 전반적으로 알아봅니다.">
+    <meta name="image" content="https://subicura.com/k8s/imgs/share.png">
+    <meta name="twitter:title" content="YAML 문법">
+    <meta name="twitter:description" content="YAML 문법에 대해 전반적으로 알아봅니다.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://subicura.com/k8s/imgs/share.png">
+    <meta name="twitter:url" content="https://subicura.com/k8s/prepare/yaml.html">
+    <meta name="twitter:creator" content="@subicura">
+    <meta name="twitter:site" content="@subicura">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="YAML 문법">
+    <meta property="og:description" content="YAML 문법에 대해 전반적으로 알아봅니다.">
+    <meta property="og:image" content="https://subicura.com/k8s/imgs/share.png">
+    <meta property="og:url" content="https://subicura.com/k8s/prepare/yaml.html">
+    <meta property="og:site_name" content="쿠버네티스 안내서">
+    <meta property="article:author" content="subicura">
+    <meta itemprop="name" content="YAML 문법">
+    <meta itemprop="description" content="YAML 문법에 대해 전반적으로 알아봅니다.">
+    <meta itemprop="image" content="https://subicura.com/k8s/imgs/share.png">
+    <meta name="theme-color" content="#3eaf7c">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="msapplication-TileImage" content="/k8s/icons/mstile-150x150.png">
+    <meta name="msapplication-TileColor" content="#000000">
+    <meta property="fb:app_id" content="1611862309129685">
+    
+    <link rel="preload" href="/k8s/assets/css/0.styles.a0c42850.css" as="style"><link rel="preload" href="/k8s/assets/js/app.5b6c8083.js" as="script"><link rel="preload" href="/k8s/assets/js/8.b1485824.js" as="script"><link rel="preload" href="/k8s/assets/js/2.f4eaca4e.js" as="script"><link rel="preload" href="/k8s/assets/js/1.3b2f0421.js" as="script"><link rel="preload" href="/k8s/assets/js/14.a3043af0.js" as="script"><link rel="prefetch" href="/k8s/assets/js/10.f8281e9c.js"><link rel="prefetch" href="/k8s/assets/js/11.10dcf451.js"><link rel="prefetch" href="/k8s/assets/js/12.611f7fd0.js"><link rel="prefetch" href="/k8s/assets/js/13.12e43d1d.js"><link rel="prefetch" href="/k8s/assets/js/15.05470fee.js"><link rel="prefetch" href="/k8s/assets/js/16.4c71ae1c.js"><link rel="prefetch" href="/k8s/assets/js/17.afb0c47e.js"><link rel="prefetch" href="/k8s/assets/js/18.0d42165a.js"><link rel="prefetch" href="/k8s/assets/js/19.3b7bd38b.js"><link rel="prefetch" href="/k8s/assets/js/20.dfd5daa3.js"><link rel="prefetch" href="/k8s/assets/js/21.40de22ce.js"><link rel="prefetch" href="/k8s/assets/js/22.8c40c3e1.js"><link rel="prefetch" href="/k8s/assets/js/23.5a27b39b.js"><link rel="prefetch" href="/k8s/assets/js/24.59af4da4.js"><link rel="prefetch" href="/k8s/assets/js/25.a5a619be.js"><link rel="prefetch" href="/k8s/assets/js/26.ced0e171.js"><link rel="prefetch" href="/k8s/assets/js/27.29fcb8b9.js"><link rel="prefetch" href="/k8s/assets/js/28.b6ecc3d1.js"><link rel="prefetch" href="/k8s/assets/js/29.6f81ecd5.js"><link rel="prefetch" href="/k8s/assets/js/30.e4422e30.js"><link rel="prefetch" href="/k8s/assets/js/31.8d92e4a8.js"><link rel="prefetch" href="/k8s/assets/js/32.d51b85e6.js"><link rel="prefetch" href="/k8s/assets/js/33.8d87a767.js"><link rel="prefetch" href="/k8s/assets/js/34.031dd6a4.js"><link rel="prefetch" href="/k8s/assets/js/35.6e648e62.js"><link rel="prefetch" href="/k8s/assets/js/36.4d5c0d10.js"><link rel="prefetch" href="/k8s/assets/js/37.1f3151e3.js"><link rel="prefetch" href="/k8s/assets/js/38.fa63d806.js"><link rel="prefetch" href="/k8s/assets/js/39.87fb8b7b.js"><link rel="prefetch" href="/k8s/assets/js/40.d3bc8c44.js"><link rel="prefetch" href="/k8s/assets/js/41.97fad676.js"><link rel="prefetch" href="/k8s/assets/js/42.03723519.js"><link rel="prefetch" href="/k8s/assets/js/43.25ee5d61.js"><link rel="prefetch" href="/k8s/assets/js/44.7c2da3cd.js"><link rel="prefetch" href="/k8s/assets/js/45.63e92243.js"><link rel="prefetch" href="/k8s/assets/js/46.c43116a6.js"><link rel="prefetch" href="/k8s/assets/js/47.ff776d0a.js"><link rel="prefetch" href="/k8s/assets/js/48.b7b2adaf.js"><link rel="prefetch" href="/k8s/assets/js/49.50bb3af2.js"><link rel="prefetch" href="/k8s/assets/js/5.e175883c.js"><link rel="prefetch" href="/k8s/assets/js/50.47308272.js"><link rel="prefetch" href="/k8s/assets/js/51.dc3439b5.js"><link rel="prefetch" href="/k8s/assets/js/52.a373915a.js"><link rel="prefetch" href="/k8s/assets/js/53.ef5527af.js"><link rel="prefetch" href="/k8s/assets/js/54.d6765ed4.js"><link rel="prefetch" href="/k8s/assets/js/55.077e9dff.js"><link rel="prefetch" href="/k8s/assets/js/56.7a9a2b87.js"><link rel="prefetch" href="/k8s/assets/js/57.33a0c698.js"><link rel="prefetch" href="/k8s/assets/js/6.a2f30769.js"><link rel="prefetch" href="/k8s/assets/js/7.a13b1f8f.js"><link rel="prefetch" href="/k8s/assets/js/9.0b3e7256.js"><link rel="prefetch" href="/k8s/assets/js/vendors~docsearch.ca607f2e.js">
+    <link rel="stylesheet" href="/k8s/assets/css/0.styles.a0c42850.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/k8s/" class="home-link router-link-active"><!----> <span class="site-name">쿠버네티스 안내서</span></a> <div class="links"><!----> <div class="user-settings"><a href="#" class="settings-button"><svg aria-hidden="true" data-prefix="fas" data-icon="cog" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-cog fa-w-16 settings-icon"><path fill="currentColor" d="M444.788 291.1l42.616 24.599c4.867 2.809 7.126 8.618 5.459 13.985-11.07 35.642-29.97 67.842-54.689 94.586a12.016 12.016 0 0 1-14.832 2.254l-42.584-24.595a191.577 191.577 0 0 1-60.759 35.13v49.182a12.01 12.01 0 0 1-9.377 11.718c-34.956 7.85-72.499 8.256-109.219.007-5.49-1.233-9.403-6.096-9.403-11.723v-49.184a191.555 191.555 0 0 1-60.759-35.13l-42.584 24.595a12.016 12.016 0 0 1-14.832-2.254c-24.718-26.744-43.619-58.944-54.689-94.586-1.667-5.366.592-11.175 5.459-13.985L67.212 291.1a193.48 193.48 0 0 1 0-70.199l-42.616-24.599c-4.867-2.809-7.126-8.618-5.459-13.985 11.07-35.642 29.97-67.842 54.689-94.586a12.016 12.016 0 0 1 14.832-2.254l42.584 24.595a191.577 191.577 0 0 1 60.759-35.13V25.759a12.01 12.01 0 0 1 9.377-11.718c34.956-7.85 72.499-8.256 109.219-.007 5.49 1.233 9.403 6.096 9.403 11.723v49.184a191.555 191.555 0 0 1 60.759 35.13l42.584-24.595a12.016 12.016 0 0 1 14.832 2.254c24.718 26.744 43.619 58.944 54.689 94.586 1.667 5.366-.592 11.175-5.459 13.985L444.788 220.9a193.485 193.485 0 0 1 0 70.2zM336 256c0-44.112-35.888-80-80-80s-80 35.888-80 80 35.888 80 80 80 80-35.888 80-80z"></path></svg></a> <div class="user-settings-menu" style="display:none;"><div class="theme-options"><!----> <!----> <div class="dark-theme-options toggle-option"><div class="toggleWrapper" data-v-04cefa17><input type="checkbox" id="themeSwitch" data-v-04cefa17><label for="themeSwitch" class="toggle" data-v-04cefa17><span class="toggle__handler" data-v-04cefa17><span class="crater crater--1" data-v-04cefa17></span><span class="crater crater--2" data-v-04cefa17></span><span class="crater crater--3" data-v-04cefa17></span></span><span class="star star--1" data-v-04cefa17></span><span class="star star--2" data-v-04cefa17></span><span class="star star--3" data-v-04cefa17></span><span class="star star--4" data-v-04cefa17></span><span class="star star--5" data-v-04cefa17></span><span class="star star--6" data-v-04cefa17></span></label></div></div> <!----> <!----></div></div></div> <!----> <form id="search-form" role="search" class="algolia-search-wrapper search-box"><input id="algolia-search-input" class="search-query"></form> <nav class="nav-links can-hide"><div class="nav-item"><a href="/k8s/guide/" class="nav-link">
+  📔 가이드
+</a></div><div class="nav-item"><a href="/k8s/prepare/" class="nav-link router-link-active">
+  👨‍💻 준비하기
+</a></div><div class="nav-item"><a href="/k8s/archive/" class="nav-link">
+  🕶 Archive
+</a></div> <a href="https://github.com/subicura/k8s" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://bit.ly/inflearn-k8s-link" target="_blank" rel="noopener noreferrer" class="inflearn-out-link">
+    영상강의
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/k8s/guide/" class="nav-link">
+  📔 가이드
+</a></div><div class="nav-item"><a href="/k8s/prepare/" class="nav-link router-link-active">
+  👨‍💻 준비하기
+</a></div><div class="nav-item"><a href="/k8s/archive/" class="nav-link">
+  🕶 Archive
+</a></div> <a href="https://github.com/subicura/k8s" target="_blank" rel="noopener noreferrer" class="repo-link">
+    GitHub
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a> <a href="https://bit.ly/inflearn-k8s-link" target="_blank" rel="noopener noreferrer" class="inflearn-out-link">
+    영상강의
+    <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>준비하기</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/k8s/prepare/" aria-current="page" class="sidebar-link">개발환경 준비</a></li><li><a href="/k8s/prepare/yaml.html" aria-current="page" class="active sidebar-link">YAML 문법</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/k8s/prepare/yaml.html#기본문법" class="sidebar-link">기본문법</a></li><li class="sidebar-sub-header"><a href="/k8s/prepare/yaml.html#주의사항" class="sidebar-link">주의사항</a></li><li class="sidebar-sub-header"><a href="/k8s/prepare/yaml.html#참고" class="sidebar-link">참고</a></li></ul></li><li><a href="/k8s/prepare/for-windows.html" class="sidebar-link">windows 환경</a></li><li><a href="/k8s/prepare/kubernetes-setup.html" class="sidebar-link">쿠버네티스 설치</a></li><li><a href="/k8s/prepare/minikube.html" class="sidebar-link">minikube 고급기능</a></li><li><a href="/k8s/prepare/kubectl-setup.html" class="sidebar-link">kubectl 설치</a></li><li><a href="/k8s/prepare/etc.html" class="sidebar-link">그외</a></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h1 id="yaml-문법"><a href="#yaml-문법" class="header-anchor">#</a> YAML 문법</h1> <div class="custom-block tip"><p class="custom-block-title">⚡️ 목표</p> <p>YAML 문법에 대해 전반적으로 알아봅니다.
+이미 익숙하더라도 한 번 더 체크해보세요!</p></div> <p><img src="/k8s/assets/img/yaml-dev.1c1ae205.jpg" alt="https://speakerdeck.com/rjw1/are-we-all-yaml-engineers-now"></p> <p>쿠버네티스 실습에서 중요한 건 아키텍처, 그다음이 <strong>YAML</strong>입니다. <s>앞으로 YAML파일을 수십 개 만들 겁니다</s> 😵</p> <div style="text-align:center;"><img src="/k8s/assets/img/req.d8fc3424.png" alt="배포요청" style="width:500px;max-width:100%;"></div> <p>&quot;블로그를 만들 건데, APP서버는 3개 띄워주시고 DB서버는 1대, 도메인은 blog.subicura.com으로 연결해주세요&quot;를 쿠버네티스에 요청하려면 1. 어떤 오브젝트를 사용할지 정하고 2. 상세 설정을 <strong>YAML형식</strong>으로 정의해야 합니다.</p> <p></p><div class="table-of-contents"><ul><li><a href="#기본문법">기본문법</a><ul><li><a href="#들여쓰기-indent">들여쓰기 (indent)</a></li><li><a href="#데이터-정의-map">데이터 정의 (map)</a></li><li><a href="#배열-정의-array">배열 정의 (array)</a></li><li><a href="#주석-comment">주석 (comment)</a></li><li><a href="#참-거짓-숫자표현">참/거짓, 숫자표현</a></li><li><a href="#줄바꿈-newline">줄바꿈 (newline)</a></li></ul></li><li><a href="#주의사항">주의사항</a><ul><li><a href="#띄어쓰기">띄어쓰기</a></li><li><a href="#문자열-따옴표">문자열 따옴표</a></li></ul></li><li><a href="#참고">참고</a><ul><li><a href="#json2yaml">json2yaml</a></li><li><a href="#yamllint">yamllint</a></li></ul></li></ul></div><p></p> <h2 id="기본문법"><a href="#기본문법" class="header-anchor">#</a> 기본문법</h2> <h3 id="들여쓰기-indent"><a href="#들여쓰기-indent" class="header-anchor">#</a> 들여쓰기 (indent)</h3> <p>들여쓰기는 기본적으로 <strong>2칸</strong> 또는 <strong>4칸</strong>을 지원합니다.</p> <p><strong>2칸 들여쓰기 (추천)</strong></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">person</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Chungsub Kim
+  <span class="token key atrule">job</span><span class="token punctuation">:</span> Developer
+  <span class="token key atrule">skills</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> docker
+    <span class="token punctuation">-</span> kubernetes
+</code></pre></div><p><strong>4칸 들여쓰기</strong></p> <div class="language- extra-class"><pre class="language-text"><code>person:
+    name: Chungsub Kim
+    job: Developer
+    skills:
+        - docker
+        - kubernetes
+</code></pre></div><h3 id="데이터-정의-map"><a href="#데이터-정의-map" class="header-anchor">#</a> 데이터 정의 (map)</h3> <p>데이터는 <code>key</code>: <code>value</code> 형식으로 정의합니다.</p> <div class="theme-code-group" data-v-32c2d7ed><div class="theme-code-group__nav" data-v-32c2d7ed><ul class="theme-code-group__ul" data-v-32c2d7ed></ul></div> <div class="theme-code-block" data-v-6d04095e><div class="language-yaml extra-class" data-v-6d04095e><pre class="language-yaml" data-v-6d04095e><code data-v-6d04095e><span class="token key atrule" data-v-6d04095e>apiVersion</span><span class="token punctuation" data-v-6d04095e>:</span> v1
+<span class="token key atrule" data-v-6d04095e>kind</span><span class="token punctuation" data-v-6d04095e>:</span> Pod
+<span class="token key atrule" data-v-6d04095e>metadata</span><span class="token punctuation" data-v-6d04095e>:</span>
+  <span class="token key atrule" data-v-6d04095e>name</span><span class="token punctuation" data-v-6d04095e>:</span> echo
+  <span class="token key atrule" data-v-6d04095e>labels</span><span class="token punctuation" data-v-6d04095e>:</span>
+    <span class="token key atrule" data-v-6d04095e>type</span><span class="token punctuation" data-v-6d04095e>:</span> app
+</code></pre></div></div> <div class="theme-code-block" data-v-6d04095e><div class="language-json extra-class" data-v-6d04095e><pre class="language-json" data-v-6d04095e><code data-v-6d04095e><span class="token punctuation" data-v-6d04095e>{</span>
+  <span class="token property" data-v-6d04095e>&quot;apiVersion&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;v1&quot;</span><span class="token punctuation" data-v-6d04095e>,</span>
+  <span class="token property" data-v-6d04095e>&quot;kind&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;Pod&quot;</span><span class="token punctuation" data-v-6d04095e>,</span>
+  <span class="token property" data-v-6d04095e>&quot;metadata&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>{</span>
+    <span class="token property" data-v-6d04095e>&quot;name&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;echo&quot;</span><span class="token punctuation" data-v-6d04095e>,</span>
+    <span class="token property" data-v-6d04095e>&quot;labels&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>{</span>
+      <span class="token property" data-v-6d04095e>&quot;type&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;app&quot;</span>
+    <span class="token punctuation" data-v-6d04095e>}</span>
+  <span class="token punctuation" data-v-6d04095e>}</span>
+<span class="token punctuation" data-v-6d04095e>}</span>
+</code></pre></div></div> <pre class="pre-blank" data-v-32c2d7ed>// Make sure to add code blocks to your code group</pre></div> <h3 id="배열-정의-array"><a href="#배열-정의-array" class="header-anchor">#</a> 배열 정의 (array)</h3> <p>배열은 <code>-</code>로 표시합니다.</p> <div class="theme-code-group" data-v-32c2d7ed><div class="theme-code-group__nav" data-v-32c2d7ed><ul class="theme-code-group__ul" data-v-32c2d7ed></ul></div> <div class="theme-code-block" data-v-6d04095e><div class="language-yaml extra-class" data-v-6d04095e><pre class="language-yaml" data-v-6d04095e><code data-v-6d04095e><span class="token key atrule" data-v-6d04095e>person</span><span class="token punctuation" data-v-6d04095e>:</span>
+  <span class="token key atrule" data-v-6d04095e>name</span><span class="token punctuation" data-v-6d04095e>:</span> Chungsub Kim
+  <span class="token key atrule" data-v-6d04095e>job</span><span class="token punctuation" data-v-6d04095e>:</span> Developer
+  <span class="token key atrule" data-v-6d04095e>skills</span><span class="token punctuation" data-v-6d04095e>:</span> 
+    <span class="token punctuation" data-v-6d04095e>-</span> docker
+    <span class="token punctuation" data-v-6d04095e>-</span> kubernetes
+</code></pre></div></div> <div class="theme-code-block" data-v-6d04095e><div class="language-json extra-class" data-v-6d04095e><pre class="language-json" data-v-6d04095e><code data-v-6d04095e><span class="token punctuation" data-v-6d04095e>{</span>
+  <span class="token property" data-v-6d04095e>&quot;person&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>{</span>
+    <span class="token property" data-v-6d04095e>&quot;name&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;Chungsub Kim&quot;</span><span class="token punctuation" data-v-6d04095e>,</span>
+    <span class="token property" data-v-6d04095e>&quot;job&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;Developer&quot;</span><span class="token punctuation" data-v-6d04095e>,</span>
+    <span class="token property" data-v-6d04095e>&quot;skills&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>[</span>
+      <span class="token string" data-v-6d04095e>&quot;docker&quot;</span><span class="token punctuation" data-v-6d04095e>,</span> <span class="token string" data-v-6d04095e>&quot;kubernetes&quot;</span>
+    <span class="token punctuation" data-v-6d04095e>]</span>
+  <span class="token punctuation" data-v-6d04095e>}</span>
+<span class="token punctuation" data-v-6d04095e>}</span>
+</code></pre></div></div> <pre class="pre-blank" data-v-32c2d7ed>// Make sure to add code blocks to your code group</pre></div> <h3 id="주석-comment"><a href="#주석-comment" class="header-anchor">#</a> 주석 (comment)</h3> <p>주석은 <code>#</code>으로 표시합니다.</p> <p><strong>전체 라인 주석처리</strong></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># comment</span>
+<span class="token key atrule">person</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Chungsub Kim
+  <span class="token key atrule">job</span><span class="token punctuation">:</span> Developer
+  <span class="token key atrule">skills</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> docker
+    <span class="token punctuation">-</span> kubernetes
+</code></pre></div><p><strong>일부 주석처리</strong></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">person</span><span class="token punctuation">:</span>
+  <span class="token key atrule">name</span><span class="token punctuation">:</span> Chungsub Kim <span class="token comment"># subicura</span>
+  <span class="token key atrule">job</span><span class="token punctuation">:</span> Developer
+  <span class="token key atrule">skills</span><span class="token punctuation">:</span>
+    <span class="token punctuation">-</span> docker
+    <span class="token punctuation">-</span> kubernetes
+</code></pre></div><h3 id="참-거짓-숫자표현"><a href="#참-거짓-숫자표현" class="header-anchor">#</a> 참/거짓, 숫자표현</h3> <p>참/거짓은 <code>true</code>, <code>false</code>외에 <code>yes</code>, <code>no</code>를 지원합니다.</p> <p><strong>참/거짓</strong></p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token key atrule">study_hard</span><span class="token punctuation">:</span> yes
+<span class="token key atrule">give_up</span><span class="token punctuation">:</span> no
+<span class="token key atrule">hello</span><span class="token punctuation">:</span> <span class="token boolean important">True</span>
+<span class="token key atrule">world</span><span class="token punctuation">:</span> <span class="token boolean important">TRUE</span>
+<span class="token key atrule">manual</span><span class="token punctuation">:</span> <span class="token boolean important">false</span>
+</code></pre></div><p><strong>숫자</strong></p> <p>정수 또는 실수를 따옴표(&quot;) 없이 사용하면 숫자로 인식합니다.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># number</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token number">1.2</span>
+
+<span class="token comment"># string</span>
+<span class="token key atrule">version</span><span class="token punctuation">:</span> <span class="token string">&quot;1.2&quot;</span>
+</code></pre></div><h3 id="줄바꿈-newline"><a href="#줄바꿈-newline" class="header-anchor">#</a> 줄바꿈 (newline)</h3> <p>여러 줄을 표현하는 방법입니다.</p> <p><strong>&quot;|&quot; 지시어는 마지막 줄바꿈이 포함</strong></p> <div class="theme-code-group" data-v-32c2d7ed><div class="theme-code-group__nav" data-v-32c2d7ed><ul class="theme-code-group__ul" data-v-32c2d7ed></ul></div> <div class="theme-code-block" data-v-6d04095e><div class="language-yaml extra-class" data-v-6d04095e><pre class="language-yaml" data-v-6d04095e><code data-v-6d04095e><span class="token key atrule" data-v-6d04095e>newlines_sample</span><span class="token punctuation" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>|</span><span class="token scalar string" data-v-6d04095e>
+            number one line</span>
+
+            second line
+
+            last line
+
+</code></pre></div></div> <div class="theme-code-block" data-v-6d04095e><div class="language-json extra-class" data-v-6d04095e><pre class="language-json" data-v-6d04095e><code data-v-6d04095e><span class="token punctuation" data-v-6d04095e>{</span>
+  <span class="token property" data-v-6d04095e>&quot;newlines_sample&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;number one line\n\nsecond line\n\nlast line\n&quot;</span>
+<span class="token punctuation" data-v-6d04095e>}</span>
+</code></pre></div></div> <pre class="pre-blank" data-v-32c2d7ed>// Make sure to add code blocks to your code group</pre></div> <p><strong>&quot;|-&quot; 지시어는 마지막 줄바꿈을 제외</strong></p> <div class="theme-code-group" data-v-32c2d7ed><div class="theme-code-group__nav" data-v-32c2d7ed><ul class="theme-code-group__ul" data-v-32c2d7ed></ul></div> <div class="theme-code-block" data-v-6d04095e><div class="language-yaml extra-class" data-v-6d04095e><pre class="language-yaml" data-v-6d04095e><code data-v-6d04095e><span class="token key atrule" data-v-6d04095e>newlines_sample</span><span class="token punctuation" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>|</span><span class="token punctuation" data-v-6d04095e>-</span>
+            number one line
+
+            second line
+
+            last line
+
+</code></pre></div></div> <div class="theme-code-block" data-v-6d04095e><div class="language-json extra-class" data-v-6d04095e><pre class="language-json" data-v-6d04095e><code data-v-6d04095e><span class="token punctuation" data-v-6d04095e>{</span>
+  <span class="token property" data-v-6d04095e>&quot;newlines_sample&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;number one line\n\nsecond line\n\nlast line&quot;</span>
+<span class="token punctuation" data-v-6d04095e>}</span>
+</code></pre></div></div> <pre class="pre-blank" data-v-32c2d7ed>// Make sure to add code blocks to your code group</pre></div> <p><strong>&quot;&gt;&quot; 지시어는 중간에 들어간 빈줄을 제외</strong></p> <div class="theme-code-group" data-v-32c2d7ed><div class="theme-code-group__nav" data-v-32c2d7ed><ul class="theme-code-group__ul" data-v-32c2d7ed></ul></div> <div class="theme-code-block" data-v-6d04095e><div class="language-yaml extra-class" data-v-6d04095e><pre class="language-yaml" data-v-6d04095e><code data-v-6d04095e><span class="token key atrule" data-v-6d04095e>newlines_sample</span><span class="token punctuation" data-v-6d04095e>:</span> <span class="token punctuation" data-v-6d04095e>&gt;</span><span class="token scalar string" data-v-6d04095e>
+            number one line</span>
+
+            second line
+
+            last line
+
+</code></pre></div></div> <div class="theme-code-block" data-v-6d04095e><div class="language-json extra-class" data-v-6d04095e><pre class="language-json" data-v-6d04095e><code data-v-6d04095e><span class="token punctuation" data-v-6d04095e>{</span>
+  <span class="token property" data-v-6d04095e>&quot;newlines_sample&quot;</span><span class="token operator" data-v-6d04095e>:</span> <span class="token string" data-v-6d04095e>&quot;number one line\nsecond line\nlast line\n&quot;</span>
+<span class="token punctuation" data-v-6d04095e>}</span>
+</code></pre></div></div> <pre class="pre-blank" data-v-32c2d7ed>// Make sure to add code blocks to your code group</pre></div> <h2 id="주의사항"><a href="#주의사항" class="header-anchor">#</a> 주의사항</h2> <h3 id="띄어쓰기"><a href="#띄어쓰기" class="header-anchor">#</a> 띄어쓰기</h3> <p>key와 value사이에는 반드시 빈칸이 필요합니다.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># error (not key-value, string)</span>
+key<span class="token punctuation">:</span>value
+
+<span class="token comment"># ok</span>
+<span class="token key atrule">key</span><span class="token punctuation">:</span> value
+</code></pre></div><h3 id="문자열-따옴표"><a href="#문자열-따옴표" class="header-anchor">#</a> 문자열 따옴표</h3> <p>대부분의 문자열을 따옴표 없이 사용할 수 있지만 <code>:</code>가 들어간 경우는 반드시 따옴표가 필요합니다.</p> <div class="language-yaml extra-class"><pre class="language-yaml"><code><span class="token comment"># error</span>
+<span class="token key atrule">windows_drive</span><span class="token punctuation">:</span> <span class="token key atrule">c</span><span class="token punctuation">:</span>
+
+<span class="token comment"># ok</span>
+<span class="token key atrule">windows_drive</span><span class="token punctuation">:</span> <span class="token string">&quot;c:&quot;</span>
+<span class="token key atrule">windows_drive</span><span class="token punctuation">:</span> <span class="token string">'c:'</span>
+</code></pre></div><h2 id="참고"><a href="#참고" class="header-anchor">#</a> 참고</h2> <h3 id="json2yaml"><a href="#json2yaml" class="header-anchor">#</a> json2yaml</h3> <p>JSON에 익숙하신 분들을 위한 YAML 변환 사이트입니다.</p> <p><img src="/k8s/assets/img/json2yaml.d36eebf4.png" alt="json2yaml.com"> <a href="https://www.json2yaml.com/" target="_blank" rel="noopener noreferrer">https://www.json2yaml.com/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p> <h3 id="yamllint"><a href="#yamllint" class="header-anchor">#</a> yamllint</h3> <p>YAML 문법을 체크하고 어떻게 해석하는지 결과를 알려줍니다.</p> <p><img src="/k8s/assets/img/yamllint.829e28e5.png" alt="yamllint.com"> <a href="http://www.yamllint.com/" target="_blank" rel="noopener noreferrer">http://www.yamllint.com/<span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></a></p></div> <footer class="page-edit"><div class="edit-link"><a href="https://github.com/subicura/k8s/edit/master/src/prepare/yaml.md" target="_blank" rel="noopener noreferrer">Edit this page</a> <span><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg> <span class="sr-only">(opens new window)</span></span></div> <div class="last-updated"><span class="prefix">Last Updated:</span> <span class="time">2020-12-15</span></div></footer> <div class="page-nav"><p class="inner"><span class="prev">
+      ←
+      <a href="/k8s/prepare/" class="prev router-link-active">
+        개발환경 준비
+      </a></span> <span class="next"><a href="/k8s/prepare/for-windows.html">
+        windows 환경
+      </a>
+      →
+    </span></p></div> <div class="fb-comment-wrapper"><div class="fb-comment-inner"><div data-href="https://subicura.com/k8s/prepare/yaml.html" data-num-posts="5" data-order-by="social" data-width="100%" class="fb-comments"></div></div></div> <div id="fb-root"></div> <script async="async" defer="defer" crossorigin="anonymous" src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&amp;version=v9.0&amp;appId=1611862309129685&amp;autoLogAppEvents=1" nonce="0khzBnEU"></script></main></div><div class="global-ui"><!----></div></div>
+    <script src="/k8s/assets/js/app.5b6c8083.js" defer></script><script src="/k8s/assets/js/8.b1485824.js" defer></script><script src="/k8s/assets/js/2.f4eaca4e.js" defer></script><script src="/k8s/assets/js/1.3b2f0421.js" defer></script><script src="/k8s/assets/js/14.a3043af0.js" defer></script>
+  </body>
+</html>
